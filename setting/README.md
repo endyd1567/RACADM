@@ -35,6 +35,7 @@ SHARE_USER=idrac_user
 SHARE_PASS=Dellemc1234!
 # 동시에 실행할 최대 작업 수
 max_jobs=10
+```
 
 ---
 
