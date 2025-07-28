@@ -9,7 +9,7 @@ Dell iDRAC 환경 설정 자동화를 위한 Bash 스크립트 모음입니다.
 | 파일명 | 기능 설명 |
 |--------|-----------|
 | `set_ipmi_lan.sh` | iDRAC의 **IPMI over LAN** 설정 (활성화/비활성화) |
-| `set_power_hotspare.sh` | 시스템의 **Hot Spare** 기능 설정 |
+| `set_power_hotspare.sh` | 시스템 power **Hot Spare** 기능 설정 (활성화/비활성화) |
 | `change_root_pw.sh` | iDRAC **root 비밀번호** 변경 |
 
 ---
@@ -66,13 +66,5 @@ Dell iDRAC 환경 설정 자동화를 위한 Bash 스크립트 모음입니다.
 
 ---
 
-## 📌 참고 사항
-
-- 모든 스크립트는 병렬 작업을 지원하며, `max_jobs` 값을 통해 동시 실행 개수를 제한합니다.
-- IP 리스트 파일 내 주석(`#`) 또는 빈 줄은 자동으로 무시됩니다.
-- 인증서 경고 메시지는 `--nocertwarn` 플래그로 무시하고 실행됩니다.
-- 잘못된 IP 형식은 무시되며, 오류 메시지가 출력됩니다.
-
----
 
 
