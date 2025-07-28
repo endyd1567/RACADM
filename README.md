@@ -41,11 +41,11 @@ racadm/
 **RACADM(Remote Access Controller Admin)**은 iDRAC 기능을 명령줄에서 사용할 수 있도록 제공하는 Dell의 관리 도구입니다.  
 이를 통해 대부분의 작업을 자동화하거나 스크립트를 통해 대규모로 실행할 수 있습니다.
 
-- 공식 명칭: Remote Access Controller Admin
 - RACADM install
   - [Windows Dell iDRAC 툴, v11.2.0.0](https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=j2vkv)
   - [Linux Dell iDRAC 툴, v11.2.0.0](https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=j72j9)
 - 설치 후 `racadm` 명령을 CLI에서 직접 사용 가능
+[iDRAC 8/7 v2.81.81.81 RACADM CLI Guide](https://dl.dell.com/topicspdf/idrac8-lifecycle-controller-v2818181_cli-guide_en-us.pdf)
 
 ### ✅ 기본 사용 구문
 
