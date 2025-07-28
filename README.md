@@ -19,20 +19,31 @@ racadm/
 
 ## 🧰 `racadm` CLI란?
 
-`racadm`은 Dell iDRAC(Integrated Dell Remote Access Controller)을 제어하는 CLI 도구입니다.  
-이를 통해 서버의 펌웨어 업데이트, 전원 설정, 로그 수집 등을 원격으로 수행할 수 있습니다.
+**RACADM(Remote Access Controller Admin)**은 iDRAC 기능을 명령줄에서 사용할 수 있도록 제공하는 Dell의 관리 도구입니다.  
+이를 통해 대부분의 작업을 자동화하거나 스크립트를 통해 대규모로 실행할 수 있습니다.
 
 - 공식 명칭: Remote Access Controller Admin
-- 설치 위치: Linux 또는 Windows에서 별도 설치 필요
-- 기본 명령어 예시:
+- RACADM install
+  - [Windows Dell iDRAC 툴, v11.2.0.0](https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=j2vkv)
+  - [Linux Dell iDRAC 툴, v11.2.0.0](https://www.dell.com/support/home/en-us/drivers/driversdetails?driverid=j72j9)
+- 설치 후 `racadm` 명령을 CLI에서 직접 사용 가능
+
+### ✅ 기본 사용 구문
 
 ```bash
-racadm -r <iDRAC_IP> -u <USER> -p <PASSWORD> getsvctag
-racadm -r <iDRAC_IP> -u <USER> -p <PASSWORD> jobqueue view
-racadm -r <iDRAC_IP> -u <USER> -p <PASSWORD> update -f BIOS_1.3.4.exe ...
+racadm -r <iDRAC_IP> -u <username> -p <password> <subcommand>
 ```
 
-> 💡 `--nocertwarn` 옵션을 통해 인증서 경고를 무시하고 실행할 수 있습니다.
+### 📌 사용 예시
+
+```bash
+# 시스템 정보 조회
+racadm -r 192.168.0.2 -u root -p xxxx getsysinfo
+
+# 서버 전원 켜기
+racadm -r 192.168.0.2 -u root -p xxxx serveraction powerup
+```
+
 
 ---
 
