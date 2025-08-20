@@ -105,7 +105,7 @@ if [[ -n $ip_file ]]; then
     fi
 
     while IFS= read -r ip || [[ -n $ip ]]; do
-        ip=$(echo "$ip" | xargs)
+        ip=$(echo "$ip")
         [[ -z "$ip" || "$ip" =~ ^# ]] && continue
         if [[ ! $ip =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "⚠️  Skipping invalid IP: $ip"
