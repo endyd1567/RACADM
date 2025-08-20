@@ -43,8 +43,8 @@ load_config() {
     fi
 
     while IFS='=' read -r key value || [[ -n "$key" ]]; do
-        key=$(echo "$key" | xargs)
-        value=$(echo "$value" | xargs)
+        key=$(echo "$key")
+        value=$(echo "$value")
         if [[ -z "$key" || "$key" =~ ^# ]]; then
             continue
         fi
