@@ -302,11 +302,17 @@ echo "----------------------------------------------------"
 echo ""
 
 # 사용자 확인
-read -p "출력된 설정으로 펌웨어 업데이트를 진행하시겠습니까? (yes/no): " confirm_proceed
-if [[ ! "$confirm_proceed" =~ ^[Yy][Ee][Ss]$ ]]; then
-    echo "펌웨어 업데이트를 취소합니다."
-    exit 0
-fi
+read -r -p "출력된 설정으로 펌웨어 업데이트를 진행하시겠습니까? (y/n): " confirm_proceed
+case "$confirm_proceed" in
+    [Yy])
+        echo "펌웨어 업데이트를 진행합니다."
+        ;;
+    *)
+        echo "펌웨어 업데이트를 취소합니다."
+        exit 0
+        ;;
+esac
+
 
 # 단일 IP 처리
 if [[ -n $idrac_ip ]]; then
