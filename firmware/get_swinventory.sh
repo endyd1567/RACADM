@@ -89,14 +89,22 @@ get_sw_inventory() {
     local inventory_filename="SWInventory_${ip}_${DATE_SUFFIX}.txt"
     local full_path="${output_dir}/${inventory_filename}"
 
-    racadm -r "${ip}" -u "${RACUSER}" -p "${RACPSWD}" swinventory --nocertwarn | \
-    awk '
-        /ElementName = / {
-            name=$3; for(i=4;i<=NF;i++) name=name FS $i
-        }
-        /Current Version = / && name!="" {
-            print name " = " $4; name=""
-        }' > "${full_path}"
+	racadm -r "${ip}" -u "${RACUSER}" -p "${RACPSWD}" swinventory --nocertwarn \
+	| sed $'s/\r//g' \
+	| awk '
+		/^ElementName = / {
+			name=$0
+			sub(/^ElementName = /,"",name)
+			next
+		}
+		/^Current Version = / && length(name)>0 {
+			ver=$0
+			sub(/^Current Version = /,"",ver)
+			print name " = " ver
+			name=""
+		}
+    ' > "${full_path}"
+
 
     if [[ $? -eq 0 ]]; then
         echo " ✅ ${ip} 의 인벤토리 정보가 ${full_path} 에 저장되었습니다."
