@@ -51,8 +51,8 @@ fi
 # 설정 파일 직접 파싱
 if [[ -f "$CONFIG_FILE" ]]; then
     while IFS='=' read -r key value || [[ -n "$key" ]]; do
-        key=$(echo "$key" | xargs)
-        value=$(echo "$value" | xargs)
+        key=$(echo "$key")
+        value=$(echo "$value")
         [[ -z "$key" || "$key" =~ ^# ]] && continue
         case "$key" in
             "RACUSER") RACUSER="$value" ;;
