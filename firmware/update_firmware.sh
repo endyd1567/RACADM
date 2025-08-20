@@ -87,7 +87,7 @@ update_firmware() {
             if [[ -n "$new_job_id" ]]; then
                 echo "Firmware update job created for $idrac_ip. Job ID: $new_job_id"
             else
-                local clean_output=$(echo "$racadm_output" | tr -d '\n\r' | xargs)
+                local clean_output=$(echo "$racadm_output" | tr -d '\n\r')
                 echo "Firmware update job initiated for $idrac_ip (Message: $clean_output)."
                 echo "Will now monitor job queue for the latest firmware update job."
             fi
@@ -180,10 +180,10 @@ update_firmware() {
         local clean_job_info
         clean_job_info=$(echo -n "$job_info" | tr -d '\r')
 
-        local job_id=$(echo "$clean_job_info" | sed -n '1p' | xargs)
-        local job_name=$(echo "$clean_job_info" | sed -n '2p' | cut -d'=' -f2- | xargs)
-        local status=$(echo "$clean_job_info" | sed -n '3p' | cut -d'=' -f2- | xargs)
-        local percent_complete=$(echo "$clean_job_info" | sed -n '4p' | grep -o '[0-9]*' | xargs)
+        local job_id=$(echo "$clean_job_info" | sed -n '1p')
+        local job_name=$(echo "$clean_job_info" | sed -n '2p' | cut -d'=' -f2-)
+        local status=$(echo "$clean_job_info" | sed -n '3p' | cut -d'=' -f2-)
+        local percent_complete=$(echo "$clean_job_info" | sed -n '4p' | grep -o '[0-9]*')
 
         echo "Latest Firmware Update Job: ID=$job_id, Name='$job_name', Status=$status, Progress=${percent_complete:-0}%"
 
@@ -333,7 +333,7 @@ if [[ -n $ip_file ]]; then
 
     while IFS= read -r ip_line || [[ -n $ip_line ]]; do
         # 주석 라인 또는 빈 라인 건너뛰기, 앞뒤 공백 제거
-        ip=$(echo "$ip_line" | xargs)
+        ip=$(echo "$ip_line")
         if [[ -z "$ip" || "$ip" =~ ^# ]]; then
             continue
         fi
